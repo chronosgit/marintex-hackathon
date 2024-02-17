@@ -1,5 +1,5 @@
+import CreateMonitoring from "src/components/layout/create-monitoring/CreateMonitoring";
 import VerticalTab from "src/components/layout/vertical_tab/VerticalTab";
-import Creator from "src/pages/creator/Creator";
 import Home from "src/pages/home/Home";
 import Lenta from "src/pages/lenta/Lenta";
 import Login from "src/pages/login/Login";
@@ -34,7 +34,7 @@ const routes = [
 
     {   
         path: "/creator",
-        element: <Creator />,
+        element: <CreateMonitoring />,
     },
 ]
 

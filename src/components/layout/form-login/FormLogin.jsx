@@ -60,6 +60,7 @@ const FormLogin = () => {
             <TextField 
                 required
                 size="small"
+                type="password"
                 label="Password"
                 margin="dense"   
                 name={pwd}

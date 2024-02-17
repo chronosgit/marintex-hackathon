@@ -1,12 +1,12 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Monitor from 'src/components/layout/monitor/Monitor';
-import { Button, Icon } from '@mui/material';
+import { Button } from '@mui/material';
 import MiniProfile from './MiniProfile';
+import { useState } from 'react';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,14 +41,9 @@ function a11yProps(index) {
   };
 }
 
-const user = {
-  firstName: 'John',
-  lastName: 'Doe',
-}
-
 export default function VerticalTab() {
   const username = localStorage.getItem("username") || "Username";
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = useState(2);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -76,15 +71,15 @@ export default function VerticalTab() {
       <TabPanel value={value} index={2}>
         <Monitor />
       </TabPanel>
-      {/* <TabPanel value={value} index={3}>
-        Item Two
+      <TabPanel value={value} index={3}>
+        Create monitoring
       </TabPanel>
       <TabPanel value={value} index={4}>
         Item Three
       </TabPanel>
       <TabPanel value={value} index={5}>
         Item Four
-      </TabPanel> */}
+      </TabPanel>
       
     </Box>
   );
