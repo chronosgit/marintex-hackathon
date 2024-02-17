@@ -38,18 +38,20 @@ const Monitor = () => {
       // Function to fetch data
       const fetchData = async () => {
         try {
+          // console.log(localStorage.getItem("access-token"));
           // const response = await axios.post('http://marintexhackathon-production.up.railway.app//api/v1/monitorings/1');
           const response = await axios.get(
-            'http://marintexhackathon-production.up.railway.app/api/v1/monitorings/getAll',
+            'https://marintexhackathon-production.up.railway.app/api/v1/monitorings/getAll',
             {
               headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("access-token")}`,
                 // Add any other headers as needed
               },
             }
           );
-          const result = await response.json();
-          alert(result);
+          // const result = await response.json();
+          console.log(response.json());
         } catch (error) {
           console.error('Error fetching data:', error);
         }

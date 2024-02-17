@@ -1,5 +1,5 @@
-import { Link as ReactRouterLink } from "react-router-dom";
-import { Box, Link as MUILink } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const HeaderLinks = ({links = [], isVertical = false}) => {
 
@@ -14,14 +14,12 @@ const HeaderLinks = ({links = [], isVertical = false}) => {
         >
         {
             links.map((link, i) => 
-                <MUILink
+                <Link
                     key={i}
-                    component={ReactRouterLink}
-                    href={link.url}
-                    underline="none"
+                    to={link.url}
                 >
                     {link.name}
-                </MUILink>
+                </Link>
             )
         }
         </Box>

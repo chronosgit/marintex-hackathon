@@ -1,31 +1,45 @@
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { 
     Button, FormControl, 
     TextField, Typography,
-    Link as MUILink,
-    Box,
-    Alert
+    Box, Alert, CircularProgress,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import useLogin from "src/hooks/useLogin";
 import { useState } from "react";
+import refreshToken from "src/utils/refreshToken";
 
 const FormLogin = () => {
 
     const [error, setError] = useState(false);
+    const [pending, setPending] = useState(false);
 
     const {
         username, pwd, 
         setUsername, setPwd, 
-        validate, emptyStates
+        validate, emptyStates,
+        login
     } = useLogin();
+
+    const tmp = () => {
+        try {
+            const username = localStorage.getItem("username");
+            refreshToken(username)
+        } catch(error) {
+            console.error(error);
+        }
+    };
 
     const onSubmit = () => {
         try {
+            setPending(true);
+
             validate();
 
-            
+            login(username, pwd, () => setPending(false), () => setError(true));
         } catch(error) {
+            setPending(false);
+
             emptyStates();
 
             setError(true);
@@ -43,7 +57,6 @@ const FormLogin = () => {
             <TextField 
                 required
                 size="small"
-                id="email" 
                 label="Username"
                 margin="dense"   
                 name={username}
@@ -57,7 +70,6 @@ const FormLogin = () => {
             <TextField 
                 required
                 size="small"
-                id="email" 
                 label="Password"
                 margin="dense"   
                 name={pwd}
@@ -96,18 +108,35 @@ const FormLogin = () => {
                     >
                         Password must be from 8 to 30 characters
                     </Box>
+
+                    <Box 
+                        sx={{
+                            marginBottom: "0.5rem",
+                            lineHeight: "1rem",
+                        }}
+                    >
+                        Make sure you provide reliable data
+                    </Box>
                 </Alert>
             }
 
-            <Button
-                variant="contained"
-                sx={{
-                    my: "1rem",
-                }}
-                onClick={onSubmit}
-            >
-                Continue
-            </Button>
+            {
+            pending
+                ?
+                    <Box sx={{mx: "inline", my: "1rem"}}>
+                        <CircularProgress />
+                    </Box>
+                :
+                    <Button
+                        variant="contained"
+                        sx={{
+                            my: "1rem",
+                        }}
+                        onClick={onSubmit}
+                    >
+                        Continue
+                    </Button>
+            }
 
             <Typography 
                 sx={{
@@ -119,13 +148,11 @@ const FormLogin = () => {
                 Don&apos;t have an account?
             </Typography>
 
-            <MUILink
-                component={ReactRouterLink}
-                href="/register"
-                underline="none"
-            >
+            <Link to="/register">
                 <Box sx={{color: blue[500]}}>Register</Box>
-            </MUILink>
+            </Link>
+
+            <Button onClick={tmp}>BTN</Button>
         </FormControl>
     )
 };
