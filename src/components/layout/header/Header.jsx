@@ -1,24 +1,24 @@
 import { Box } from "@mui/material";
 import Logo from "src/components/ui/logo/Logo";
-import HeaderLinks from "src/components/layout/header/header-links/HeaderLinks";
+// import HeaderLinks from "src/components/layout/header/header-links/HeaderLinks";
 import HeaderAuth from "src/components/layout/header/header-auth/HeaderAuth";
 
 const Header = () => {
 
-    const links = [
-        {
-            name: "Link1",
-            url: "/",
-        },
-        {
-            name: "Link2",
-            url: "/",
-        },
-        {
-            name: "Link3",
-            url: "/",
-        },
-    ];
+    // const links = [
+    //     {
+    //         name: "Link1",
+    //         url: "/",
+    //     },
+    //     {
+    //         name: "Link2",
+    //         url: "/",
+    //     },
+    //     {
+    //         name: "Link3",
+    //         url: "/",
+    //     },
+    // ];
 
     return (
         <Box
@@ -31,7 +31,7 @@ const Header = () => {
         >
             <Logo />
   
-            <HeaderLinks links={links} />
+            {/* <HeaderLinks links={links} /> */}
 
             <HeaderAuth />
         </Box>

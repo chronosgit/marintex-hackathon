@@ -1,3 +1,3 @@
-const baseUrl = "https://jsonplaceholder.typicode.com";
+const baseUrl = "http://marintexhackathon-production.up.railway.app";
 
 export default baseUrl;

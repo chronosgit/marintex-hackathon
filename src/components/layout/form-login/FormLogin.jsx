@@ -1,10 +1,8 @@
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { 
     Button, FormControl, 
     TextField, Typography,
-    Link as MUILink,
-    Box,
-    Alert
+    Box, Alert, CircularProgress,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import useLogin from "src/hooks/useLogin";
@@ -13,19 +11,25 @@ import { useState } from "react";
 const FormLogin = () => {
 
     const [error, setError] = useState(false);
+    const [pending, setPending] = useState(false);
 
     const {
         username, pwd, 
         setUsername, setPwd, 
-        validate, emptyStates
+        validate, emptyStates,
+        login
     } = useLogin();
 
     const onSubmit = () => {
         try {
+            setPending(true);
+
             validate();
 
-            
+            login(username, pwd, () => setPending(false));
         } catch(error) {
+            console.log(123);
+
             emptyStates();
 
             setError(true);
@@ -43,7 +47,6 @@ const FormLogin = () => {
             <TextField 
                 required
                 size="small"
-                id="email" 
                 label="Username"
                 margin="dense"   
                 name={username}
@@ -57,7 +60,6 @@ const FormLogin = () => {
             <TextField 
                 required
                 size="small"
-                id="email" 
                 label="Password"
                 margin="dense"   
                 name={pwd}
@@ -99,6 +101,24 @@ const FormLogin = () => {
                 </Alert>
             }
 
+            {
+            pending
+                ?
+                    <Box sx={{mx: "inline", my: "1rem"}}>
+                        <CircularProgress />
+                    </Box>
+                :
+                    <Button
+                        variant="contained"
+                        sx={{
+                            my: "1rem",
+                        }}
+                        onClick={onSubmit}
+                    >
+                        Continue
+                    </Button>
+            }
+
             <Button
                 variant="contained"
                 sx={{
@@ -119,13 +139,9 @@ const FormLogin = () => {
                 Don&apos;t have an account?
             </Typography>
 
-            <MUILink
-                component={ReactRouterLink}
-                href="/register"
-                underline="none"
-            >
+            <Link to="/register">
                 <Box sx={{color: blue[500]}}>Register</Box>
-            </MUILink>
+            </Link>
         </FormControl>
     )
 };

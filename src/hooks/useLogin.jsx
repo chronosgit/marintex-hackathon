@@ -7,15 +7,8 @@ const useLogin = () => {
     const [pwd, setPwd] = useState("");
 
     const validate = () => {
-        if(!validateUsername(username)) {
-            throw new Error("Username must be ...");
-        }
-
-        if(!validatePwd(pwd)) {
-            throw new Error("Password must be ...");
-        }
-
-        console.log('success');
+        validateUsername(username);
+        validatePwd(pwd);
     }
     
     const emptyStates = () => {
@@ -23,7 +16,13 @@ const useLogin = () => {
         setPwd("");
     }
 
-    return {username, pwd, setUsername, setPwd, validate, emptyStates};
+    const login = (username, pwd, finallyCallback) => {
+        console.log(username, pwd, finallyCallback);
+
+
+    }
+
+    return {username, pwd, setUsername, setPwd, validate, emptyStates, login};
 };
 
 export default useLogin;

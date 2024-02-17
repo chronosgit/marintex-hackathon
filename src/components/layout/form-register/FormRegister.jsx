@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { 
     Button, FormControl, 
     TextField, Typography,
-    Link as MUILink,
-    Box,
-    Alert
+    Box, Alert, CircularProgress,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import useRegister from "src/hooks/useRegister";
@@ -13,21 +11,27 @@ import useRegister from "src/hooks/useRegister";
 const FormRegister = () => {
 
     const [error, setError] = useState(false);
+    const [pending, setPending] = useState(false);
 
     const {
         username, pwd, 
         rePwd, setUsername, 
         setPwd, setRePwd, 
         validate, emptyStates,
-        register
+        register, email,
+        setEmail
     } = useRegister();
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         try {
+            setPending(true);
+
             validate();
 
-            register(username, pwd);
+            register(username, pwd, email, () => setPending(false));
         } catch(error) {
+            console.log(123);
+
             emptyStates();
 
             setError(true);
@@ -51,6 +55,19 @@ const FormRegister = () => {
                 value={username} 
                 onChange={(e) => {
                     setUsername(e.target.value);
+                    setError(false);
+                }}  
+            />
+
+            <TextField
+                required
+                size="small"
+                label="Email"
+                margin="dense"
+                name={email}
+                value={email} 
+                onChange={(e) => {
+                    setEmail(e.target.value);
                     setError(false);
                 }}  
             />
@@ -115,16 +132,24 @@ const FormRegister = () => {
                     <Box>Passwords must be equal</Box>
                 </Alert>
             }
-
-            <Button
-                variant="contained"
-                sx={{
-                    my: "1rem",
-                }}
-                onClick={onSubmit}
-            >
-                Continue
-            </Button>
+            
+            {
+            pending
+                ?
+                    <Box sx={{mx: "inline", my: "1rem"}}>
+                        <CircularProgress />
+                    </Box>
+                :
+                    <Button
+                        variant="contained"
+                        sx={{
+                            my: "1rem",
+                        }}
+                        onClick={onSubmit}
+                    >
+                        Continue
+                    </Button>
+            }
 
             <Typography 
                 sx={{
@@ -136,13 +161,9 @@ const FormRegister = () => {
                 Already have an account?
             </Typography>
 
-            <MUILink
-                component={ReactRouterLink}
-                href="/login"
-                underline="none"
-            >
+            <Link to="/login">
                 <Box sx={{color: blue[500]}}>Log in</Box>
-            </MUILink>
+            </Link>
         </FormControl>
     )
 };
