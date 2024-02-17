@@ -30,6 +30,35 @@ const useRegister = () => {
     const register = async (username, pwd, email, finallyCallback = () => {}) => {
         validate();
 
+        // await fetch(`${baseUrl}/api/v1/auth/registration`, 
+        //     {
+        //         method: 'POST',
+        //         mode: 'cors',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             "username": username,
+        //             "email": email,
+        //             "password": pwd
+        //         }),
+        //     }
+        // )
+        // .then(response => {
+        //     finallyCallback();
+
+        //     console.log(response);
+
+        //     navigate("/login");
+        // })
+        // .catch(error => {
+        //     finallyCallback();
+
+        //     console.error(error);
+
+        //     throw error;
+        // });
+
         await axios.post(
             `${baseUrl}/api/v1/auth/registration`,
             {
@@ -56,7 +85,7 @@ const useRegister = () => {
             console.error(error);
 
             throw error;
-        })
+        });
     };
     
     const emptyStates = () => {

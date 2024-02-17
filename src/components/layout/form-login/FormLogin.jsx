@@ -119,16 +119,6 @@ const FormLogin = () => {
                     </Button>
             }
 
-            <Button
-                variant="contained"
-                sx={{
-                    my: "1rem",
-                }}
-                onClick={onSubmit}
-            >
-                Continue
-            </Button>
-
             <Typography 
                 sx={{
                     marginTop: "2rem",
