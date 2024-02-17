@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Monitor from 'src/components/layout/monitor/Monitor';
-import { Button } from '@mui/material';
 import MiniProfile from './MiniProfile';
 import { useState } from 'react';
 import CreateMonitoring from '../create-monitoring/CreateMonitoring';
@@ -64,22 +63,26 @@ export default function VerticalTab() {
         sx={{ borderRight: 1, borderColor: 'divider', width: '10vw'}}
       >
         <MiniProfile username={username} />
-        <Tab label="Monitor" {...a11yProps(2)} />
-        <Tab label="Admin Settings" {...a11yProps(3)} />
-        <Tab label="Share" {...a11yProps(4)} />
-        <Tab label="My KPIs" {...a11yProps(5)} />
+        <Tab label="Monitor" {...a11yProps(1)} />
+        <Tab label="Admin Settings" {...a11yProps(2)} />
+        <Tab label="Share" {...a11yProps(3)} />
+        <Tab label="My KPIs" {...a11yProps(4)} />
+        <Tab label="Forum Feed" {...a11yProps(5)} />
       </Tabs>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={1}>
         <Monitor />
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={2}>
         <CreateMonitoring />
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      <TabPanel value={value} index={3}>
         <CreatePost />
       </TabPanel>
-      <TabPanel value={value} index={5}>
+      <TabPanel value={value} index={4}>
         Item Four
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        Feed
       </TabPanel>
       
     </Box>

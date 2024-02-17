@@ -3,9 +3,10 @@ import refreshToken from "./refreshToken";
 import baseUrl from "src/db/baseUrl";
 
 const createPost = async (
-    title = "Title", start, finish,
-    amountFuel = 0, descr = "Description",
-    status, isPublic = true,
+    title = "Title", amountFuel = 0, 
+    descr = "Description", status,
+    isPublic = true,
+    start, finish,
     finallyCallback = () => {},
     successCallback = () => {}
 ) => {
@@ -21,6 +22,8 @@ const createPost = async (
     const res = await refreshToken(username)
     .then(async () => {
         const token = localStorage.getItem("access-token");
+
+        console.log(title, start, finish, amountFuel, descr, status, isPublic)
 
         const res = await axios.post(
             `${baseUrl}/api/v1/posts/create`,
