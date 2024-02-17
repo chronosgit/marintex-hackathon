@@ -4,7 +4,12 @@ import Header from "src/components/layout/header/Header";
 const Home = () => {
 
     return (
-        <Container maxWidth="lg">
+        <Container 
+            maxWidth="lg"
+            sx={{
+                py: "1rem"
+            }}
+        >
             <Header />
 
         </Container>
