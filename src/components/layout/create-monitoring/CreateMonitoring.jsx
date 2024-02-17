@@ -1,4 +1,4 @@
-import { Alert, Box, Button, CircularProgress, Container, FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { Alert, Box, Button, CircularProgress, Container, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import createMonitoring from "src/utils/createMonitoring";
 
@@ -30,16 +30,23 @@ const CreateMonitoring = () => {
     }
 
     return (
-        <Container maxWidth="xs" sx={{py: "2rem"}}>
+        <Container maxWidth="lg" sx={{py: "2rem"}}>
             <Container 
                 sx={{
                     py: "2rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
                     boxShadow: "4",
                 }}
-            >
+            >   
+                <Typography
+                    sx={{
+                        fontSize: "1.5rem",
+                        fontWeight: "700",
+                        marginBottom: "1rem",
+                    }}
+                >
+                    Create monitoring:
+                </Typography>
+
                 <FormControl component="form" sx={{width: "100%"}}>
                     <Select
                         size="small"
@@ -47,9 +54,9 @@ const CreateMonitoring = () => {
                         placeholder="Ship"
                         onChange={(e) => setShip(e.target.value)}
                     >
-                        <MenuItem value={10}>MIZZEN</MenuItem>
-                        <MenuItem value={20}>BARGE</MenuItem>
-                        <MenuItem value={30}>OAR</MenuItem>
+                        <MenuItem value="MIZZEN">MIZZEN</MenuItem>
+                        <MenuItem value="BARGE">BARGE</MenuItem>
+                        <MenuItem value="OAR">OAR</MenuItem>
                     </Select>
 
                     <TextField

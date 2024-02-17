@@ -1,10 +1,8 @@
 // Import necessary libraries and components
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PersonIcon from '@mui/icons-material/Person';
-
 
 // Main UserProfile component
 const MiniProfile = ({username}) => {

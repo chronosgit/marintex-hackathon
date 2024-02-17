@@ -7,6 +7,8 @@ import Monitor from 'src/components/layout/monitor/Monitor';
 import { Button } from '@mui/material';
 import MiniProfile from './MiniProfile';
 import { useState } from 'react';
+import CreateMonitoring from '../create-monitoring/CreateMonitoring';
+import CreatePost from '../create-post/CreatePost';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,21 +63,20 @@ export default function VerticalTab() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider', width: '10vw'}}
       >
-        <Button>Text</Button>
         <MiniProfile username={username} />
         <Tab label="Monitor" {...a11yProps(2)} />
         <Tab label="Admin Settings" {...a11yProps(3)} />
-        <Tab label="Overview" {...a11yProps(4)} />
+        <Tab label="Share" {...a11yProps(4)} />
         <Tab label="My KPIs" {...a11yProps(5)} />
       </Tabs>
       <TabPanel value={value} index={2}>
         <Monitor />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Create monitoring
+        <CreateMonitoring />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Three
+        <CreatePost />
       </TabPanel>
       <TabPanel value={value} index={5}>
         Item Four
