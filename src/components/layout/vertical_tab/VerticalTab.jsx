@@ -8,6 +8,7 @@ import MiniProfile from './MiniProfile';
 import { useState } from 'react';
 import CreateMonitoring from '../create-monitoring/CreateMonitoring';
 import CreatePost from '../create-post/CreatePost';
+import Feed from '../feed/Feed';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -82,7 +83,7 @@ export default function VerticalTab() {
         Item Four
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Feed
+        <Feed />
       </TabPanel>
       
     </Box>
