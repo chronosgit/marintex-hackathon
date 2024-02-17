@@ -10,6 +10,7 @@ import ShipTable from 'src/components/ui/ShipTable';
 import { useState } from 'react';
 import { Box, Container } from '@mui/material';
 import axios from 'axios';
+import refreshToken from 'src/utils/refreshToken';
 
 const series = [
     {
@@ -38,20 +39,17 @@ const Monitor = () => {
       // Function to fetch data
       const fetchData = async () => {
         try {
-          // console.log(localStorage.getItem("access-token"));
-          // const response = await axios.post('http://marintexhackathon-production.up.railway.app//api/v1/monitorings/1');
           const response = await axios.get(
             'https://marintexhackathon-production.up.railway.app/api/v1/monitorings/getAll',
             {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("access-token")}`,
-                // Add any other headers as needed
               },
             }
           );
-          // const result = await response.json();
-          console.log(response.json());
+          console.log('KPI', response.data);
+          // console.log(response.json());
         } catch (error) {
           console.error('Error fetching data:', error);
         }
