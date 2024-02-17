@@ -6,57 +6,51 @@ import ShipTable from 'src/components/ui/ShipTable';
 import { useState } from 'react';
 import { Box } from '@mui/material';
 import axios from 'axios';
+import refreshToken from 'src/utils/refreshToken';
+import getAllMonitorings from 'src/utils/getAllMonitorings';
 
-const series = [
-    {
-      name: 'Series 1',
-      data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
-    },
-  ];
-const getTop10DataPoints = () => series[0].data.slice(0, 10);
-const list = getTop10DataPoints();
+const objectExample = {
+  createdDate: "2024-02-17",
+  electricity: 12.12,
+  fuel: 123.1,
+  id: 1,
+  ship: "MIZZEN",
+  solarBattery: 122.5,
+}
 
-const ships = [
-  { name: 'Ship 1', path: 'Path A', fuelAllPaths: 500, fuelPerHour: 50 },
-  { name: 'Ship 2', path: 'Path B', fuelAllPaths: 700, fuelPerHour: 60 },
-  // Add more ships as needed
-];
+// const series = [
+//     {
+//       name: 'Series 1',
+//       data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+//     },
+//   ];
+
+
+// const ships = [
+//   { name: 'Ship 1', path: 'Path A', fuelAllPaths: 500, fuelPerHour: 50 },
+//   { name: 'Ship 2', path: 'Path B', fuelAllPaths: 700, fuelPerHour: 60 },
+//   // Add more ships as needed
+// ];
 
 const Monitor = () => {
-    const [selectedData, setSelectedData] = useState(list[0]);
+  const [ships, setShips] = useState(null);
+  
+  const [selectedData, setSelectedData] = useState(null);
 
-    const handleRowClick = (rank, ship) => {
-        // Handle the click event, e.g., set the selected data for LineChart
-        setSelectedData({ rank, ship });
-    };
+  const handleRowClick = (rank, ship) => {
+      // Handle the click event, e.g., set the selected data for LineChart
+      setSelectedData({ship});
+  };
 
-    useEffect(() => {
-      // Function to fetch data
-      const fetchData = async () => {
-        try {
-          // console.log(localStorage.getItem("access-token"));
-          // const response = await axios.post('http://marintexhackathon-production.up.railway.app//api/v1/monitorings/1');
-          const response = await axios.get(
-            'https://marintexhackathon-production.up.railway.app/api/v1/monitorings/getAll',
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem("access-token")}`,
-                // Add any other headers as needed
-              },
-            }
-          );
-          // const result = await response.json();
-          console.log(response.json());
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-      fetchData();
-      return () => {
-        console.log('Cleanup - Component will unmount');
-      };
-    }, []); 
+  useEffect(() => {
+    const fetchData = async () => {
+      // console.log(localStorage.getItem('access-token'));
+      const result = await getAllMonitorings();
+      setShips(result);
+      setSelectedData(result[0].ship)
+    }
+    fetchData();
+  }, []); 
 
   return (
     <div style={{ width: '80vw'}}>
