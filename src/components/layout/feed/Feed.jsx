@@ -60,7 +60,7 @@ const Feed = () => {
     <>
     {
         isEdit ?
-            <ForumPostEditor post={updateablePost} />
+            <ForumPostEditor {...updateablePost} />
         :
             <Container
                 sx={{
@@ -72,7 +72,14 @@ const Feed = () => {
                 }}
             >
             {
-                dummy.map((post, i) => <ForumPost key={i} post={post} toggleEditor={toggleEditor} />)
+                dummy.map((post, i) => 
+                    <ForumPost 
+                        key={i} 
+                        post={post} 
+                        toggleEditor={toggleEditor} 
+                        setUpdateablePost={setUpdateablePost} 
+                    />
+                )
             }
             </Container>
     }

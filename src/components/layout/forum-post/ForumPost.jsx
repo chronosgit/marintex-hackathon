@@ -3,18 +3,27 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import MyLineChart from "../line-chart/MyLineChart";
+import deletePost from "src/utils/deletePost";
+import { useNavigate } from "react-router-dom";
 
-const ForumPost = ({post, toggleEditor}) => {
+const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
 
-    // {
-    //     "title": "string",
-    //     "start": "2024-02-17",
-    //     "finish": "2024-02-17",
-    //     "amountFuel": 0,
-    //     "description": "string",
-    //     "status": "PRIVATE",
-    //     "public": true
-    // }
+    const navigate = useNavigate("/menu");
+
+    const onEdit = () => {
+        setUpdateablePost(post);
+
+        toggleEditor();
+    }
+
+    const onDelete = async () => {
+        const res = await deletePost(
+            post.id,
+            () => navigate("/menu")
+        );
+
+        console.log(res);
+    }
 
     return (
         <Container
@@ -51,11 +60,15 @@ const ForumPost = ({post, toggleEditor}) => {
                         View
                     </Button>
 
-                    <Button startIcon={<EditIcon />} onClick={toggleEditor}>
+                    <Button startIcon={<EditIcon />} onClick={onEdit}>
                         Edit
                     </Button>
 
-                    <Button color="error" startIcon={<DeleteForeverIcon />}>
+                    <Button 
+                        color="error" 
+                        startIcon={<DeleteForeverIcon />}
+                        onClick={onDelete}
+                    >
                         Delete
                     </Button>
                 </ButtonGroup>

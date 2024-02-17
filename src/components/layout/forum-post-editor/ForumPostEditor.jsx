@@ -1,8 +1,10 @@
-import { Alert, Box, Button, CircularProgress, Container, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, CircularProgress, Container, FormControl, FormGroup, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import MyDatePicker from "src/components/ui/date-picker/DatePicker";
+import updatePost from "src/utils/updatePost";
 
 const ForumPostEditor = ({
+    id,
     title: oldTitle = "Title", amountFuel: oldFuel = 0,
     descr: oldDescr, status: oldStatus = "PUBLIC",
     start: oldStart = new Date(), 
@@ -23,15 +25,17 @@ const ForumPostEditor = ({
 
     const onSubmit = async () => {
         try {
-            // setPending(true);
-
-            // const res = await updatePost(
-            //     title, amountFuel, descr, status, 
-            //     isPublic, start, finish,
-            //     () => setPending(false), () => setSuccess(true),
-            // );
-            
-            // console.log(res);
+            const res = await updatePost(
+                id, title, amountFuel, 
+                descr, status, isPublic,
+                start, finish,
+                () => setPending(false),
+                () => setSuccess(true),
+            );
+    
+            console.log(res);
+    
+            return res;
         } catch(error) {
             setPending(false);
 
