@@ -1,14 +1,16 @@
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Box, Link as MUILink } from "@mui/material";
 
-const HeaderLinks = ({links = []}) => {
+const HeaderLinks = ({links = [], isVertical = false}) => {
+
+    const gridTemplateColumns = isVertical ? "1" : `repeat(${links.length}, 1fr)`;
 
     return (
         <Box
-            display="flex"
+            display="grid"
+            gridTemplateColumns={gridTemplateColumns}
             alignItems="center"
-            justifyContent="space-between"
-            gap="3rem"
+            gap="1.5rem"
         >
         {
             links.map((link, i) => 

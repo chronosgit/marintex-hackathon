@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Logo from "src/components/ui/logo/Logo";
 import HeaderLinks from "src/components/layout/header/header-links/HeaderLinks";
-import HeaderAuth from "./header-auth/HeaderAuth";
+import HeaderAuth from "src/components/layout/header/header-auth/HeaderAuth";
 
 const Header = () => {
 
@@ -30,7 +30,7 @@ const Header = () => {
             }}
         >
             <Logo />
-
+  
             <HeaderLinks links={links} />
 
             <HeaderAuth />
