@@ -2,6 +2,7 @@ import { useState } from "react";
 import validatePwd from "src/utils/validatePwd";
 import validateUsername from "src/utils/validateUsername";
 import areStringsEqual from "src/utils/areStringsEqual";
+import refreshTokens from "src/utils/refreshToken";
 
 const useRegister = () => {
     const [username, setUsername] = useState("");
@@ -9,20 +10,28 @@ const useRegister = () => {
     const [rePwd, setRePwd] = useState("");
 
     const validate = () => {
-        if(!validateUsername(username)) {
-            throw new Error("Username must be ...");
-        }
+        validateUsername(username);
 
         if(!areStringsEqual(pwd, rePwd)) {
             throw new Error("Passwords must be equal");
         }
 
-        if(!validatePwd(pwd) || !validatePwd(rePwd)) {
-            throw new Error("Password must be ...");
-        }
-
-        console.log('success');
+        validatePwd(pwd);
+        validatePwd(rePwd);
     }
+
+    const register = async (username, pwd) => {
+        const refresh = refreshTokens();
+    
+        try {
+            refresh
+            .then(response => {
+                console.log(response);
+            })
+        } catch(error) {
+            console.error(error);
+        }
+    };
     
     const emptyStates = () => {
         setUsername("");
@@ -30,7 +39,13 @@ const useRegister = () => {
         setRePwd("");
     }
 
-    return {username, pwd, rePwd, setUsername, setPwd, setRePwd, validate, emptyStates};
+    return {
+        username, pwd, 
+        rePwd, setUsername, 
+        setPwd, setRePwd, 
+        validate, emptyStates,
+        register,
+    };
 };
 
 export default useRegister;
