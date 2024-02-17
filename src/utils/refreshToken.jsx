@@ -1,13 +1,23 @@
 import axios from "axios";
 import baseUrl from "src/db/baseUrl";
 
-const refreshTokens = async () => {
-    const refresh = await axios.get(`${baseUrl}/todos/1`, 
+const refreshTokens = async (username) => {
+    const token = localStorage.getItem("refreshToken");
+
+    const refresh = await axios.post(
+        `${baseUrl}/api/v1/auth/refreshToken`, 
         {
-            withCredentials: true,
-            credentials: "include",
-        }
-    );
+            username: username,
+            token: token
+        },
+    )
+    .then(response => {
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
     return refresh;
 };
