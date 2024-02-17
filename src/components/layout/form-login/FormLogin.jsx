@@ -7,6 +7,7 @@ import {
 import { blue } from "@mui/material/colors";
 import useLogin from "src/hooks/useLogin";
 import { useState } from "react";
+import refreshToken from "src/utils/refreshToken";
 
 const FormLogin = () => {
 
@@ -20,13 +21,22 @@ const FormLogin = () => {
         login
     } = useLogin();
 
+    const tmp = () => {
+        try {
+            const username = localStorage.getItem("username");
+            refreshToken(username)
+        } catch(error) {
+            console.error(error);
+        }
+    };
+
     const onSubmit = () => {
         try {
             setPending(true);
 
             validate();
 
-            login(username, pwd, () => setPending(false));
+            login(username, pwd, () => setPending(false), () => setError(true));
         } catch(error) {
             setPending(false);
 
@@ -98,6 +108,15 @@ const FormLogin = () => {
                     >
                         Password must be from 8 to 30 characters
                     </Box>
+
+                    <Box 
+                        sx={{
+                            marginBottom: "0.5rem",
+                            lineHeight: "1rem",
+                        }}
+                    >
+                        Make sure you provide reliable data
+                    </Box>
                 </Alert>
             }
 
@@ -132,6 +151,8 @@ const FormLogin = () => {
             <Link to="/register">
                 <Box sx={{color: blue[500]}}>Register</Box>
             </Link>
+
+            <Button onClick={tmp}>BTN</Button>
         </FormControl>
     )
 };

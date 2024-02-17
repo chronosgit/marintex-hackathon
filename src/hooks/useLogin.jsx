@@ -21,7 +21,7 @@ const useLogin = () => {
         setPwd("");
     }
 
-    const login = async (username, pwd, finallyCallback) => {
+    const login = async (username, pwd, finallyCallback = () => {}, errorCallback = () => {}) => {
         validate();
 
         await axios.post(
@@ -39,6 +39,7 @@ const useLogin = () => {
         .then(response => {
             finallyCallback();
 
+            localStorage.setItem("username", username);
             localStorage.setItem("access-token", response.data.accessToken);
             localStorage.setItem("refresh-token", response.data.refreshToken)
 
@@ -46,6 +47,7 @@ const useLogin = () => {
         })
         .catch(error => {
             finallyCallback();
+            errorCallback();
 
             console.error(error);
 

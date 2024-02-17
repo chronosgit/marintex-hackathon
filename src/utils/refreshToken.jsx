@@ -1,7 +1,7 @@
 import axios from "axios";
 import baseUrl from "src/db/baseUrl";
 
-const refreshTokens = async (username) => {
+const refreshToken = async (username) => {
     const token = localStorage.getItem("refreshToken");
 
     const refresh = await axios.post(
@@ -22,4 +22,4 @@ const refreshTokens = async (username) => {
     return refresh;
 };
 
-export default refreshTokens;
+export default refreshToken;

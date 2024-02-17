@@ -28,7 +28,7 @@ const FormRegister = () => {
 
             validate();
 
-            register(username, pwd, email, () => setPending(false));
+            register(username, pwd, email, () => setPending(false), () => setError(true));
         } catch(error) {
             setPending(false);
 
@@ -130,6 +130,15 @@ const FormRegister = () => {
                     </Box>
 
                     <Box>Passwords must be equal</Box>
+
+                    <Box 
+                        sx={{
+                            marginBottom: "0.5rem",
+                            lineHeight: "1rem",
+                        }}
+                    >
+                        Make sure you provide reliable data
+                    </Box>
                 </Alert>
             }
 
