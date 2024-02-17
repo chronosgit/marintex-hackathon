@@ -11,7 +11,7 @@ const HeaderAuth = () => {
             }}
         >
             <Button
-                href="/" 
+                href="/login" 
                 sx={{
                     textTransform: "none",
                 }}
@@ -20,7 +20,7 @@ const HeaderAuth = () => {
             </Button>
 
             <Button
-                href="/" 
+                href="/register" 
                 sx={{
                     px: "1.5rem",
                     py: "0.5rem",
