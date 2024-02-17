@@ -43,7 +43,7 @@ const useLogin = () => {
             localStorage.setItem("access-token", response.data.accessToken);
             localStorage.setItem("refresh-token", response.data.refreshToken)
 
-            navigate("/");
+            navigate("/menu");
         })
         .catch(error => {
             finallyCallback();

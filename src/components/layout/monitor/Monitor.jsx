@@ -1,14 +1,10 @@
-// Example: src/CircularChart.js
-
-import React, { useEffect } from 'react';
-import ReactApexChart from 'react-apexcharts';
+import { useEffect } from 'react';
 import CircularChart from 'src/components/ui/CircularChart';
 import LineChart from 'src/components/ui/LineChart';
-import SemicircleChart from 'src/components/ui/SemicircleChart';
 import SemicircleGauge from 'src/components/ui/SemicircleGauge';
 import ShipTable from 'src/components/ui/ShipTable';
 import { useState } from 'react';
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import axios from 'axios';
 
 const series = [

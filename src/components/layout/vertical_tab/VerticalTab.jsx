@@ -47,6 +47,7 @@ const user = {
 }
 
 export default function VerticalTab() {
+  const username = localStorage.getItem("username") || "Username";
   const [value, setValue] = React.useState(2);
 
   const handleChange = (event, newValue) => {
@@ -66,7 +67,7 @@ export default function VerticalTab() {
         sx={{ borderRight: 1, borderColor: 'divider', width: '10vw'}}
       >
         <Button>Text</Button>
-        <MiniProfile user={user} />
+        <MiniProfile username={username} />
         <Tab label="Monitor" {...a11yProps(2)} />
         <Tab label="Admin Settings" {...a11yProps(3)} />
         <Tab label="Overview" {...a11yProps(4)} />
@@ -75,7 +76,7 @@ export default function VerticalTab() {
       <TabPanel value={value} index={2}>
         <Monitor />
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      {/* <TabPanel value={value} index={3}>
         Item Two
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -83,7 +84,7 @@ export default function VerticalTab() {
       </TabPanel>
       <TabPanel value={value} index={5}>
         Item Four
-      </TabPanel>
+      </TabPanel> */}
       
     </Box>
   );

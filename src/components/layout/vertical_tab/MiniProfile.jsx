@@ -7,9 +7,8 @@ import PersonIcon from '@mui/icons-material/Person';
 
 
 // Main UserProfile component
-const MiniProfile = ({ user }) => {
-    const { firstName, lastName } = user;
-
+const MiniProfile = ({username}) => {
+  
     return (
       <Box
         sx={{
@@ -30,7 +29,7 @@ const MiniProfile = ({ user }) => {
   
         {/* Name and Surname */}
         <Typography variant="h6" sx={{ marginBottom: '8px' }}>
-          {`${firstName} ${lastName}`}
+          {`${username}`}
         </Typography>
   
 
