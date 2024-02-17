@@ -28,7 +28,7 @@ const FormLogin = () => {
 
             login(username, pwd, () => setPending(false));
         } catch(error) {
-            console.log(123);
+            setPending(false);
 
             emptyStates();
 

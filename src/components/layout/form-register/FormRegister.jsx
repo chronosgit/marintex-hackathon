@@ -30,7 +30,7 @@ const FormRegister = () => {
 
             register(username, pwd, email, () => setPending(false));
         } catch(error) {
-            console.log(123);
+            setPending(false);
 
             emptyStates();
 
@@ -132,7 +132,7 @@ const FormRegister = () => {
                     <Box>Passwords must be equal</Box>
                 </Alert>
             }
-            
+
             {
             pending
                 ?
