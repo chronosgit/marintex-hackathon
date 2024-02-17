@@ -20,7 +20,7 @@ const LineChart = ({ selectedData = {rank: 1, value: 1} }) => {
 
     const options = {
     chart: {
-        height: 350,
+        height: 200,
         type: 'line',
     },
     xaxis: {
@@ -33,9 +33,8 @@ const LineChart = ({ selectedData = {rank: 1, value: 1} }) => {
 
   return (
     <div>
-        <p>Hello: {selectedData.rank}</p>
-        <button onClick={()=> {console.log(selectedData)}}>Press</button>
-        <ReactApexChart options={options} series={series} type="line" height={350} />
+        <p>Statistics: {selectedData.rank}</p>
+        <ReactApexChart options={options} series={series} type="line" height={200} />
     </div>
   );
 };

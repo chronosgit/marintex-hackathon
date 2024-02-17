@@ -8,7 +8,7 @@ import LineChart from './components/ui/LineChart';
 import MainDash from './trash/MainDash/MainDash';
 import SemicircleChart from './components/ui/SemicircleChart';
 import SemicircleGauge from './components/ui/SemicircleGauge';
-import TopTable from './components/ui/TopTable';
+import TopTable from './components/ui/ShipTable';
 import { useState } from 'react';
 import Monitor from './components/layout/monitor/Monitor';
 import VerticalTab from './components/layout/vertical_tab/VerticalTab';

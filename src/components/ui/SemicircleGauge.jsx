@@ -9,7 +9,7 @@ const SemicircleGauge = () => {
 
   const options = {
     chart: {
-      height: 350,
+      height: 50,
       type: 'radialBar',
     },
     plotOptions: {
@@ -17,7 +17,7 @@ const SemicircleGauge = () => {
         startAngle: -90,
         endAngle: 90,
         hollow: {
-          size: '70%',
+          size: '50%',
         },
         dataLabels: {
           name: {
@@ -34,8 +34,8 @@ const SemicircleGauge = () => {
   };
 
   return (
-    <div>
-      <ReactApexChart options={options} series={series} type="radialBar" height={350} />
+    <div style={{marginLeft: 'auto', marginRight: 'auto'}}>
+      <ReactApexChart options={options} series={series} type="radialBar" height={300} />
     </div>
   );
 };

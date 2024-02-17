@@ -10,7 +10,7 @@ const SemicircleChart = () => {
   const options = {
     chart: {
       type: 'pie',
-      height: 350,
+      height: 50,
     },
     plotOptions: {
       pie: {
@@ -24,7 +24,7 @@ const SemicircleChart = () => {
 
   return (
     <div>
-      <ReactApexChart options={options} series={series} type="pie" height={350} />
+      <ReactApexChart style={{backgroundColor: 'blue', marginLeft: 'auto', marginRight: 'auto'}} options={options} series={series} type="pie" height={300} />
     </div>
   );
 };
