@@ -8,6 +8,8 @@ import { blue } from "@mui/material/colors";
 import useLogin from "src/hooks/useLogin";
 import { useState } from "react";
 import refreshToken from "src/utils/refreshToken";
+import axios from "axios";
+import baseUrl from "src/db/baseUrl";
 
 const FormLogin = () => {
 
@@ -25,6 +27,33 @@ const FormLogin = () => {
         try {
             const username = localStorage.getItem("username");
             refreshToken(username)
+            .then(() => {
+                const fetch = async () => {
+                    const token = localStorage.getItem("access-token");
+                    await axios.get(
+                        `${baseUrl}/api/v1/monitorings/getAll`,
+                        {
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${token}`,
+                            }
+                        }
+                    )
+                    .then(response => {
+                        console.log(response);
+        
+                        return response;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                };
+        
+                fetch();
+            })
+            .catch(error => {
+                console.error(error);
+            });
         } catch(error) {
             console.error(error);
         }
