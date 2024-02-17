@@ -1,3 +1,5 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import routes from './routes/router';
 import './App.css'
 import BasicTable from './trash/BasicTable/BasicTable';
 import CircularChart from './components/ui/CircularChart';
@@ -14,14 +16,15 @@ import VerticalTab from './components/ui/VerticalTab/VerticalTab';
 
 
 
+const router = createBrowserRouter(routes);
+
 const App = () => {
   
 
   return (
-    <>
-    <VerticalTab />
-    {/* <Monitor /> */}
-    </>
+
+    <RouterProvider router={router} />
+
   )
 };
 
