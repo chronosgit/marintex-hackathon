@@ -1,17 +1,29 @@
-import { useState } from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { 
-    Button, Checkbox, 
-    FormControl, FormControlLabel, 
+    Button, FormControl, 
     TextField, Typography,
     Link as MUILink,
     Box
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import useLogin from "src/hooks/useLogin";
 
 const FormLogin = () => {
 
-    const [checked, setChecked] = useState(false);
+    const {
+        username, pwd, 
+        setUsername, setPwd, 
+        validate, emptyStates
+    } = useLogin();
+
+    const onSubmit = () => {
+        try {
+            validate();
+        } catch(error) {
+            emptyStates();
+            console.error(error);
+        }
+    }
 
     return (
         <FormControl
@@ -26,6 +38,9 @@ const FormLogin = () => {
                 id="email" 
                 label="Username"
                 margin="dense"   
+                name={username}
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)}
             />
 
             <TextField 
@@ -34,6 +49,9 @@ const FormLogin = () => {
                 id="email" 
                 label="Password"
                 margin="dense"   
+                name={pwd}
+                value={pwd} 
+                onChange={(e) => setPwd(e.target.value)}
             />
 
             <Button
@@ -41,6 +59,7 @@ const FormLogin = () => {
                 sx={{
                     my: "1rem",
                 }}
+                onClick={onSubmit}
             >
                 Continue
             </Button>
