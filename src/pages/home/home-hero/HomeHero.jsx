@@ -7,7 +7,7 @@ const HomeHero = () => {
     return (
         <Box
             sx={{
-                py: "10rem",
+                py: "7rem",
                 display: "grid",
                 gridTemplateColumns: "1.5fr 1fr",
                 alignItems: "center",
