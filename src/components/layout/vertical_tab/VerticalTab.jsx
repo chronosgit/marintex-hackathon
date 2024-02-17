@@ -4,7 +4,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Monitor from 'src/components/ui/Monitor/Monitor';
+import Monitor from 'src/components/layout/monitor/Monitor';
+import { Button, Icon } from '@mui/material';
+import MiniProfile from './MiniProfile';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,8 +41,13 @@ function a11yProps(index) {
   };
 }
 
+const user = {
+  firstName: 'John',
+  lastName: 'Doe',
+}
+
 export default function VerticalTab() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(2);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -56,37 +63,28 @@ export default function VerticalTab() {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ borderRight: 1, borderColor: 'divider', width: '10vw'}}
       >
-        <Tab label="Item One" {...a11yProps(0)} />
-        <Tab label="Item Two" {...a11yProps(1)} />
-        <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Button>Text</Button>
+        <MiniProfile user={user} />
+        <Tab label="Monitor" {...a11yProps(2)} />
+        <Tab label="Admin Settings" {...a11yProps(3)} />
+        <Tab label="Overview" {...a11yProps(4)} />
+        <Tab label="My KPIs" {...a11yProps(5)} />
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={2}>
         <Monitor />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={3}>
         Item Two
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={4}>
         Item Three
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={5}>
         Item Four
       </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel>
+      
     </Box>
   );
 }

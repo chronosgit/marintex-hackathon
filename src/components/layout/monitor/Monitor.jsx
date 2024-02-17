@@ -8,6 +8,7 @@ import SemicircleChart from 'src/components/ui/SemicircleChart';
 import SemicircleGauge from 'src/components/ui/SemicircleGauge';
 import TopTable from 'src/components/ui/TopTable';
 import { useState } from 'react';
+import { Box } from '@mui/material';
 
 const series = [
     {
@@ -16,24 +17,28 @@ const series = [
     },
   ];
 const getTop10DataPoints = () => series[0].data.slice(0, 10);
+const list = getTop10DataPoints();
 
 const Monitor = () => {
-    const [selectedData, setSelectedData] = useState(null);
+    const [selectedData, setSelectedData] = useState(list[0]);
 
     const handleRowClick = (rank, value) => {
         // Handle the click event, e.g., set the selected data for LineChart
-        alert(rank, value);
         setSelectedData({ rank, value });
     };
 
   return (
-    <div style={{backgroundColor: 'pink', width: '50vw'}}>
+    <div style={{ width: '80vw'}}>
         {selectedData && (
         <div>
             <h2>Line Chart for Selected Data</h2>
-            <CircularChart />
-            <SemicircleChart />
-            <SemicircleGauge />
+            <Box sx={{width: '80%', display: 'flex'}}>
+              <SemicircleChart />
+              <SemicircleGauge />
+            </Box>
+            <Box>
+              <CircularChart />
+            </Box>
             <LineChart selectedData={selectedData} />
         </div>
         )}

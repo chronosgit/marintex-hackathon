@@ -10,8 +10,8 @@ import SemicircleChart from './components/ui/SemicircleChart';
 import SemicircleGauge from './components/ui/SemicircleGauge';
 import TopTable from './components/ui/TopTable';
 import { useState } from 'react';
-import Monitor from './components/ui/Monitor/Monitor';
-import VerticalTab from './components/ui/VerticalTab/VerticalTab';
+import Monitor from './components/layout/monitor/Monitor';
+import VerticalTab from './components/layout/vertical_tab/VerticalTab';
 
 
 
