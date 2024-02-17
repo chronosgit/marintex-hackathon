@@ -1,4 +1,5 @@
 import VerticalTab from "src/components/layout/vertical_tab/VerticalTab";
+import Creator from "src/pages/creator/Creator";
 import Home from "src/pages/home/Home";
 
 import Lenta from "src/pages/lenta/Lenta";
@@ -29,6 +30,10 @@ const routes = [
     {   
         path: "/register",
         element: <Register />,
+    },
+    {   
+        path: "/creator",
+        element: <Creator />,
     },
 
 ]

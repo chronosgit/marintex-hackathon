@@ -1,6 +1,6 @@
 // Example: src/CircularChart.js
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import CircularChart from 'src/components/ui/CircularChart';
 import LineChart from 'src/components/ui/LineChart';
@@ -9,6 +9,7 @@ import SemicircleGauge from 'src/components/ui/SemicircleGauge';
 import ShipTable from 'src/components/ui/ShipTable';
 import { useState } from 'react';
 import { Box, Container } from '@mui/material';
+import axios from 'axios';
 
 const series = [
     {
@@ -32,6 +33,32 @@ const Monitor = () => {
         // Handle the click event, e.g., set the selected data for LineChart
         setSelectedData({ rank, ship });
     };
+
+    useEffect(() => {
+      // Function to fetch data
+      const fetchData = async () => {
+        try {
+          // const response = await axios.post('http://marintexhackathon-production.up.railway.app//api/v1/monitorings/1');
+          const response = await axios.get(
+            'http://marintexhackathon-production.up.railway.app/api/v1/monitorings/getAll',
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                // Add any other headers as needed
+              },
+            }
+          );
+          const result = await response.json();
+          alert(result);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchData();
+      return () => {
+        console.log('Cleanup - Component will unmount');
+      };
+    }, []); 
 
   return (
     <div style={{ width: '80vw'}}>
