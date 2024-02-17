@@ -7,7 +7,6 @@ import {
 import { blue } from "@mui/material/colors";
 import useLogin from "src/hooks/useLogin";
 import { useState } from "react";
-import getAllMonitorings from "src/utils/getAllMonitorings";
 
 const FormLogin = () => {
 
@@ -20,16 +19,6 @@ const FormLogin = () => {
         validate, emptyStates,
         login
     } = useLogin();
-
-    const tmp = async () => {
-        try {
-            const d = await getAllMonitorings();
-
-            console.log(d);
-        } catch(error) {
-            console.error(error);
-        }
-    };
 
     const onSubmit = () => {
         try {
@@ -152,8 +141,6 @@ const FormLogin = () => {
             <Link to="/register">
                 <Box sx={{color: blue[500]}}>Register</Box>
             </Link>
-
-            <Button onClick={tmp}>BTN</Button>
         </FormControl>
     )
 };
