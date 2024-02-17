@@ -11,7 +11,10 @@ const refreshToken = async (username) => {
             token: token
         },
     )
-    .then(response => response)
+    .then(response => {
+        localStorage.setItem("access-token", response.data.accessToken);
+        localStorage.setItem("refresh-token", response.data.refreshToken);
+    })
     .catch(error => {
         console.error(error);
     });
