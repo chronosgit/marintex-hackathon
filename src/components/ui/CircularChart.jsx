@@ -1,24 +1,19 @@
-// Example: src/CircularChart.js
-
-import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import getEnergyPercantages from 'src/utils/getEnergyPercantages';
 
-const CircularChart = () => {
-  // Sample data
-  const series = [44, 55, 13, 43, 22];
+const CircularChart = ({ships = []}) => {
+	let percentages = getEnergyPercantages(ships);
 
-  const options = {
-    chart: {
-      type: 'donut',
-    },
-    labels: ['Apple', 'Banana', 'Cherry', 'Date', 'Fig'],
-  };
+	const options = {
+		chart: {
+			type: 'donut',
+		},
+		labels: ['Fuel', 'Solar', 'Electricity'],
+	};
 
-  return (
-    <div>
-      <ReactApexChart options={options} series={series} type="donut" />
-    </div>
-  );
+	return (
+		<ReactApexChart options={options} series={percentages} type="pie" />
+	)
 };
 
 export default CircularChart;
