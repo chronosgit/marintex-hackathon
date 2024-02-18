@@ -23,12 +23,13 @@ const selectedRow = {
   font: 'blue'
 }
 
-const ShipTable = ({ ships = objectExample, onRowClick }) => {
+const ShipTable = ({ ships = objectExample, onRowClick}) => {
   const [selectedRow, setSelectedRow] = useState(null);
 
   const handleRowClick = (index, ship) => {
     setSelectedRow(index);
     onRowClick(index, ship);
+    console.log(ship);
   };
 
   return (

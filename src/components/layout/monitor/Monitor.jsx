@@ -37,13 +37,15 @@ const objectExample = {
 // ];
 
 const Monitor = () => {
-  const [ships, setShips] = useState(null);
+  const [ships, setShips] = useState([]);
   
   const [selectedData, setSelectedData] = useState(null);
 
   const handleRowClick = (rank, ship) => {
-      // Handle the click event, e.g., set the selected data for LineChart
-      setSelectedData({ship});
+    // console.log(selectedData.ship)
+    // console.log(typeof(ship.fuel))
+    // console.log(ship)
+      setSelectedData(ship);
   };
 
   useEffect(() => {
@@ -51,7 +53,8 @@ const Monitor = () => {
       // console.log(localStorage.getItem('access-token'));
       const result = await getAllMonitorings();
       setShips(result);
-      setSelectedData(result[0].ship)
+      // console.log(result[0]);
+      setSelectedData(result[0]);
     }
     fetchData();
   }, []); 
@@ -72,8 +75,8 @@ const Monitor = () => {
               borderRadius: '8px',
               marginBottom: '16px',
             }}>
-                <SemicircleGauge />
-                <SemicircleGauge />
+                <SemicircleGauge coefficient={selectedData.fuel/200} />
+                <SemicircleGauge coefficient={selectedData.electricity/200} />
             </Box>
             <Box sx={{
               display: 'flex',
@@ -86,7 +89,7 @@ const Monitor = () => {
               marginBottom: '16px',
               marginLeft: '10px'
             }}>
-              <CircularChart />
+              <CircularChart series={selectedData} />
             </Box>
             </Box>
             <LineChart selectedData={selectedData} />
