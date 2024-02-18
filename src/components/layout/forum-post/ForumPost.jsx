@@ -5,7 +5,7 @@ import MyLineChart from "../line-chart/MyLineChart";
 import deletePost from "src/utils/deletePost";
 import { useNavigate } from "react-router-dom";
 
-const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
+const ForumPost = ({post, isPersonal, toggleEditor, setUpdateablePost}) => {
     const navigate = useNavigate();
 
     const onEdit = () => {
@@ -46,23 +46,26 @@ const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
                     {post.title}
                 </Typography>
 
-                <ButtonGroup 
-                    variant="outlined"
-                    size="small" 
-                    aria-label="button group"
-                >
-                    <Button startIcon={<EditIcon />} onClick={onEdit}>
-                        Edit
-                    </Button>
-
-                    <Button 
-                        color="error" 
-                        startIcon={<DeleteForeverIcon />}
-                        onClick={onDelete}
+                {
+                isPersonal &&
+                    <ButtonGroup 
+                        variant="outlined"
+                        size="small" 
+                        aria-label="button group"
                     >
-                        Delete
-                    </Button>
-                </ButtonGroup>
+                        <Button startIcon={<EditIcon />} onClick={onEdit}>
+                            Edit
+                        </Button>
+
+                        <Button 
+                            color="error" 
+                            startIcon={<DeleteForeverIcon />}
+                            onClick={onDelete}
+                        >
+                            Delete
+                        </Button>
+                    </ButtonGroup>
+                }
             </Box>
 
             <Typography

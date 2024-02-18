@@ -3,6 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PersonIcon from '@mui/icons-material/Person';
+import Logout from '../logout/Logout';
 
 // Main UserProfile component
 const MiniProfile = ({username}) => {
@@ -30,7 +31,7 @@ const MiniProfile = ({username}) => {
           {`${username}`}
         </Typography>
   
-
+        <Logout />
       </Box>
     );
 };
