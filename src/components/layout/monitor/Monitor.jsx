@@ -12,6 +12,7 @@ import { Box, Container } from '@mui/material';
 import axios from 'axios';
 import refreshToken from 'src/utils/refreshToken';
 import getAllMonitorings from 'src/utils/getAllMonitorings';
+import HorizontalBar from '../line-chart-tab-bar/HorizontalBar';
 
 const objectExample = {
   createdDate: "2024-02-17",
@@ -92,7 +93,7 @@ const Monitor = () => {
               <CircularChart series={selectedData} />
             </Box>
             </Box>
-            <LineChart selectedData={selectedData} />
+            <HorizontalBar ships={ships}/>
         </div>
         )}
         <ShipTable ships={ships} onRowClick={handleRowClick} />
