@@ -13,6 +13,7 @@ import axios from 'axios';
 import refreshToken from 'src/utils/refreshToken';
 import getAllMonitorings from 'src/utils/getAllMonitorings';
 import HorizontalBar from '../line-chart-tab-bar/HorizontalBar';
+import getMonitoringById from 'src/utils/getMonitoringById';
 
 const objectExample = {
   createdDate: "2024-02-17",
@@ -56,6 +57,8 @@ const Monitor = () => {
       setShips(result);
       // console.log(result[0]);
       setSelectedData(result[0]);
+      const res = getMonitoringById(1);
+      // consolelog("BY ID", res);
     }
     fetchData();
   }, []); 

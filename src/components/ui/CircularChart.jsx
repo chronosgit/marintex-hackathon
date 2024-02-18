@@ -5,7 +5,7 @@ const CircularChart = ({series}) => {
   let newSeries = Object.values(series).slice(1, 4);
 
   useEffect(() => {
-    console.log(series, newSeries);
+    // console.log(series, newSeries);
   }, []); 
 
   const options = {

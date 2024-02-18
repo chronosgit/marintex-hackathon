@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const LineChart = ({ ships, filter }) => {
-  useEffect(()=> {
-    const fetchData = async () => {
-      // console.log(localStorage.getItem('access-token'));
-      const result = await getAllMonitorings();
-      setShips(result);
-      // console.log(result[0]);
-      setSelectedData(result[0]);
-    }
-    fetchData();
-  }, []);
+  // useEffect(()=> {
+  //   const fetchData = async () => {
+  //     // console.log(localStorage.getItem('access-token'));
+  //     const result = await getAllMonitorings();
+  //     setShips(result);
+  //     // console.log(result[0]);
+  //     setSelectedData(result[0]);
+  //   }
+  //   fetchData();
+  // }, []);
   let forSeries = ships.map(ship => ship[filter]);
   let forCategroies = ships.map(ship => ship['createdDate']);
     const series = [
