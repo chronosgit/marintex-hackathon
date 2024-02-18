@@ -57,7 +57,7 @@ const Monitor = () => {
       setShips(result);
       // console.log(result[0]);
       setSelectedData(result[0]);
-      const res = getMonitoringById(1);
+      // const res = getMonitoringById(1);
       // consolelog("BY ID", res);
     }
     fetchData();
