@@ -17,8 +17,6 @@ const Monitor = () => {
 		setSelectedtShip(ship);
 	};
 
-	console.log(selectedShip)
-
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getAllMonitorings();
