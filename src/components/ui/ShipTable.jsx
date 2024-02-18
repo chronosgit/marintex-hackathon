@@ -10,7 +10,7 @@ const ShipTable = ({ ships = [], onRowClick }) => {
 
 	const handleRowClick = (index, ship) => {
 		setSelectedRow(index);
-		onRowClick(index, ship);
+		onRowClick(ship);
 	};
 
 	return (
@@ -30,6 +30,7 @@ const ShipTable = ({ ships = [], onRowClick }) => {
 						key={index}
 						style={(selectedRow === index) ? {selectedRow} : (null)} // Apply a class based on the selectedRow state
 						onClick={() => handleRowClick(index, ship)}
+						sx={{cursor: "pointer"}}
 					>
 						<TableCell>{ship.ship}</TableCell>
 						<TableCell>{ship.fuel}</TableCell>

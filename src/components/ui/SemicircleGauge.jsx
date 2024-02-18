@@ -1,43 +1,57 @@
-// Example: src/SemicircleGauge.js
-
-import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const SemicircleGauge = () => {
-  // Sample data
-  const series = [75]; // Change this value to the speed you want to represent
+const SemicircleGauge = ({title = "Pie", fraction}) => {
+	const series = [fraction];
 
-  const options = {
-    chart: {
-      height: 50,
-      type: 'radialBar',
-    },
-    plotOptions: {
-      radialBar: {
-        startAngle: -90,
-        endAngle: 90,
-        hollow: {
-          size: '50%',
-        },
-        dataLabels: {
-          name: {
-            show: false,
-          },
-          value: {
-            offsetY: 10,
-            fontSize: '22px',
-          },
-        },
-      },
-    },
-    labels: ['Speed'],
-  };
+	const options = {
+		plotOptions: {
+			radialBar: {
+				hollow: {
+					margin: 0,
+					size: "60%",
+					background: "#ebf3fb"
+				},
+				track: {
+					dropShadow: {
+						enabled: true,
+						top: 2,
+						left: 0,
+						blur: 4,
+						opacity: 0.15
+					}
+				},
+				dataLabels: {
+					name: {
+						offsetY: -20,
+						color: "black",
+						fontSize: "0.8rem"
+					},
+					value: {
+						color: "black",
+						fontSize: "1rem",
+						show: true
+					}
+				}
+			}
+		},
+		fill: {
+			type: "gradient",
+			gradient: {
+				shade: "dark",
+				type: "vertical",
+				gradientToColors: ["#87D4F9"],
+				stops: [0, 100]
+			}
+		},
+		stroke: {
+			lineCap: "round"
+		},
+		labels: [title]
+	};
 
-  return (
-    <div style={{marginLeft: 'auto', marginRight: 'auto'}}>
-      <ReactApexChart options={options} series={series} type="radialBar" height={300} />
-    </div>
-  );
+	return (
+		<ReactApexChart options={options} series={series} type="radialBar" height={300} />
+	);
 };
 
 export default SemicircleGauge;

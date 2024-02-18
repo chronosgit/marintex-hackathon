@@ -14,6 +14,8 @@ const getEnergyPercantages = (ships) => {
         electro += ship.electricity;
     }
 
+    if(!total) return 0;
+
     return [fuel / total, solar / total, electro / total];
 };
 
