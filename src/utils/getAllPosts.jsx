@@ -8,7 +8,7 @@ const getAllPosts = async () => {
     const res = await refreshToken(username)
     .then(async () => {
         const token = localStorage.getItem("access-token");
-
+        
         const res = await axios.get(
             `${baseUrl}/api/v1/posts/all`,
             {

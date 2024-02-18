@@ -70,8 +70,7 @@ export default function VerticalTab() {
 				<Tab label="Monitor" {...a11yProps(1)} />
 				<Tab label="Admin Settings" {...a11yProps(2)} />
 				<Tab label="Share" {...a11yProps(3)} />
-				<Tab label="My KPIs" {...a11yProps(4)} />
-				<Tab label="Forum Feed" {...a11yProps(5)} />
+				<Tab label="Forum Feed" {...a11yProps(4)} />
 			</Tabs>
 
 			<TabPanel value={value} index={1}>
@@ -84,9 +83,6 @@ export default function VerticalTab() {
 				<CreatePost />
 			</TabPanel>
 			<TabPanel value={value} index={4}>
-				Item Four
-			</TabPanel>
-			<TabPanel value={value} index={5}>
 				<Feed />
 			</TabPanel>
 			

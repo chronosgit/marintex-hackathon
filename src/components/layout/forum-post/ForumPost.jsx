@@ -1,10 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { Box, Button, ButtonGroup, Container, Typography } from "@mui/material";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import MyLineChart from "../line-chart/MyLineChart";
 import deletePost from "src/utils/deletePost";
-import { useNavigate } from "react-router-dom";
 
 const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
 
@@ -84,7 +84,7 @@ const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
                 {post.descr}
             </Typography>
 
-            <MyLineChart title={post.title} />
+            <MyLineChart title={post.title} value={post.amountFuel} />
         </Container>
     )
 };
