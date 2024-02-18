@@ -15,27 +15,6 @@ const Feed = () => {
         setEdit(prev => !prev);
     }
 
-    const dummy = [
-        {
-            title: "First",
-            descr: "DescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescr",
-            amountFuel: 5,
-            status: "PUBLIC",
-            public: true,
-            start: new Date(),
-            finish: new Date(new Date().setDate(new Date().getDate() + 30)),
-        },
-        {
-            title: "Second",
-            descr: "Descr",
-            amountFuel: 32,
-            status: "PUBLIC",
-            public: true,
-            start: new Date(),
-            finish: new Date(new Date().setDate(new Date().getDate() + 15)),
-        },
-    ]
-
     useEffect(() => {
         const controller = new AbortController();
 
@@ -45,8 +24,6 @@ const Feed = () => {
             if(posts === undefined) posts = [];
 
             setPosts(posts);
-
-            console.log(posts);
         }
 
         fetchPosts();
@@ -72,7 +49,7 @@ const Feed = () => {
                 }}
             >
             {
-                dummy.map((post, i) => 
+                posts.map((post, i) => 
                     <ForumPost 
                         key={i} 
                         post={post} 

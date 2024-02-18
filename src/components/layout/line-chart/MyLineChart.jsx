@@ -1,11 +1,18 @@
+import { Box, Typography } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
 import getArythmeticArray from "src/utils/getArythmeticArray";
 
 const MyLineChart = ({
     title = "Line", 
+    start = 0,
+    end = 360,
     value = 0, 
     height = 200
 }) => {
+
+    const dateDiff = end - start;
+    const spanDays = new Date(dateDiff).getDate();
+    const months = spanDays / 30;
 
     const series = [
         {
@@ -29,13 +36,28 @@ const MyLineChart = ({
                 '11 month', '12 month',
             ],
         },
+        markers: {
+            size: 3,
+        },
         stroke: {
             curve: 'smooth',
         },
     };
 
     return (
-        <ReactApexChart options={options} series={series} type="line" height={height} />
+        <Box>
+        {
+            months > 12 &&
+                <Typography>Goal is achieved after {spanDays * value} days</Typography>
+        }
+
+            <ReactApexChart 
+                options={options} 
+                series={series} 
+                type="line" 
+                height={height} 
+            />
+        </Box>
     )
 };
 

@@ -4,11 +4,17 @@ import baseUrl from "src/db/baseUrl";
 
 const updatePost = async (
     id, title, amountFuel, 
-    descr, status, isPublic,
+    descr, status,
     start, finish,
     finallyCallback = () => {},
     successCallback = () => {}
 ) => {
+    if(title.length === 0) return;
+    if(amountFuel === 0) return;
+    if(!descr) return;
+    if(!start) return;
+    if(!finish) return;
+
     const username = localStorage.getItem("username");
 
     const res = await refreshToken(username)
@@ -22,9 +28,8 @@ const updatePost = async (
                 start: start,
                 finish: finish,
                 amountFuel: amountFuel,
-                descr: descr,
+                description: descr,
                 status: status,
-                isPublic: isPublic,
             },
             {
                 headers: {

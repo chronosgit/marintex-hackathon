@@ -1,4 +1,4 @@
-import { Alert, Box, Button, CircularProgress, Container, FormControl, FormGroup, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, CircularProgress, Container, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import MyDatePicker from "src/components/ui/date-picker/DatePicker";
 import updatePost from "src/utils/updatePost";
@@ -9,7 +9,6 @@ const ForumPostEditor = ({
     descr: oldDescr, status: oldStatus = "PUBLIC",
     start: oldStart = new Date(), 
     finish: oldFinish = new Date(new Date().setDate(new Date().getDate() + 30)),
-    isPublic: oldIsPublic = true,
 }) => {
 
     const [title, setTitle] = useState(oldTitle);
@@ -18,7 +17,6 @@ const ForumPostEditor = ({
     const [status, setStatus] = useState(oldStatus);
     const [start, setStart] = useState(oldStart);
     const [finish, setFinish] = useState(oldFinish);
-    const [isPublic, setPublic] = useState(oldIsPublic);
 
     const [success, setSuccess] = useState(false);
     const [pending, setPending] = useState(false);
@@ -27,13 +25,11 @@ const ForumPostEditor = ({
         try {
             const res = await updatePost(
                 id, title, amountFuel, 
-                descr, status, isPublic,
+                descr, status,
                 start, finish,
                 () => setPending(false),
                 () => setSuccess(true),
             );
-    
-            console.log(res);
     
             return res;
         } catch(error) {
@@ -102,16 +98,6 @@ const ForumPostEditor = ({
                     >
                         <MenuItem value="PUBLIC">PUBLIC</MenuItem>
                         <MenuItem value="PRIVATE">PRIVATE</MenuItem>
-                    </Select>
-
-                    <Select
-                        size="small"
-                        value={isPublic}
-                        placeholder="Is public"
-                        onChange={(e) => setPublic(e.target.value)}
-                    >
-                        <MenuItem value={true}>PUBLIC</MenuItem>
-                        <MenuItem value={false}>PRIVATE</MenuItem>
                     </Select>
 
                     <MyDatePicker 

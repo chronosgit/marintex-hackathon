@@ -11,7 +11,6 @@ const CreatePost = () => {
     const [status, setStatus] = useState("PUBLIC");
     const [start, setStart] = useState(null);
     const [finish, setFinish] = useState(null);
-    const [isPublic, setPublic] = useState(true);
 
     const [success, setSuccess] = useState(false);
     const [pending, setPending] = useState(false);
@@ -22,7 +21,7 @@ const CreatePost = () => {
 
             const res = await createPost(
                 title, amountFuel, descr, status, 
-                isPublic, start, finish,
+                start, finish,
                 () => setPending(false), () => setSuccess(true),
             );
             
@@ -91,18 +90,8 @@ const CreatePost = () => {
                         placeholder="Status"
                         onChange={(e) => setStatus(e.target.value)}
                     >
-                        <MenuItem value="PUBLIC">PUBLIC</MenuItem>
-                        <MenuItem value="PRIVATE">PRIVATE</MenuItem>
-                    </Select>
-
-                    <Select
-                        size="small"
-                        value={isPublic}
-                        placeholder="Is public"
-                        onChange={(e) => setPublic(e.target.value)}
-                    >
-                        <MenuItem value={true}>PUBLIC</MenuItem>
-                        <MenuItem value={false}>PRIVATE</MenuItem>
+                        <MenuItem value="PUBLIC">Public status</MenuItem>
+                        <MenuItem value="PRIVATE">Private status</MenuItem>
                     </Select>
 
                     <MyDatePicker 

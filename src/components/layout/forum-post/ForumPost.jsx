@@ -1,14 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { Box, Button, ButtonGroup, Container, Typography } from "@mui/material";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import MyLineChart from "../line-chart/MyLineChart";
 import deletePost from "src/utils/deletePost";
+import { useNavigate } from "react-router-dom";
 
 const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
-
-    const navigate = useNavigate("/menu");
+    const navigate = useNavigate();
 
     const onEdit = () => {
         setUpdateablePost(post);
@@ -17,12 +15,9 @@ const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
     }
 
     const onDelete = async () => {
-        const res = await deletePost(
-            post.id,
-            () => navigate("/menu")
-        );
+        await deletePost(post.id);
 
-        console.log(res);
+        navigate(0)
     }
 
     return (
@@ -38,7 +33,7 @@ const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    marginBottom: "1rem",
+                    marginBottom: "2rem",
                 }}
             >
                 <Typography
@@ -56,10 +51,6 @@ const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
                     size="small" 
                     aria-label="button group"
                 >
-                    <Button startIcon={<RemoveRedEyeIcon />}>
-                        View
-                    </Button>
-
                     <Button startIcon={<EditIcon />} onClick={onEdit}>
                         Edit
                     </Button>
@@ -81,10 +72,15 @@ const ForumPost = ({post, toggleEditor, setUpdateablePost}) => {
                     marginBottom: "2rem",
                 }}
             >
-                {post.descr}
+                {post.description}
             </Typography>
 
-            <MyLineChart title={post.title} value={post.amountFuel} />
+            <MyLineChart 
+                title={post.title} 
+                value={post.amountFuel} 
+                start={post.start}
+                end={post.finish}
+            />
         </Container>
     )
 };

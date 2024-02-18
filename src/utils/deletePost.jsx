@@ -4,14 +4,13 @@ import baseUrl from "src/db/baseUrl";
 
 const deletePost = async (
     id,
-    successCallback = () => {}
 ) => {
     const username = localStorage.getItem("username");
 
     const res = await refreshToken(username)
     .then(async () => {
         const token = localStorage.getItem("access-token");
-
+        
         const res = await axios.delete(
             `${baseUrl}/api/v1/posts/${id}`,
             {
@@ -22,7 +21,6 @@ const deletePost = async (
             }
         )
         .then(response => {
-            successCallback();
 
             return response;
         })

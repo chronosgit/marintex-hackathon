@@ -21,7 +21,9 @@ function TabPanel(props) {
 			aria-labelledby={`vertical-tab-${index}`}
 			{...other}
 			style={{
-				margin: "0 auto"
+				margin: "0 auto",
+				minWidth: "60%",
+				maxWidth: "90%",
 			}}
 		>
 			{value === index && (
