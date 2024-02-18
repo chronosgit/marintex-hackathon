@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import GaugeChart from 'react-gauge-chart';
 
 const SemicircleGauge = ({ coefficient }) => {

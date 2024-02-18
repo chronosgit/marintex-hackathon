@@ -5,7 +5,16 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-const ShipTable = ({ ships = {}, onRowClick}) => {
+const objectExample = {
+  createdDate: "2024-02-17",
+  electricity: 12.12,
+  fuel: 123.1,
+  id: 1,
+  ship: "MIZZEN",
+  solarBattery: 122.5,
+}
+
+const ShipTable = ({ ships = objectExample, onRowClick}) => {
   const [selectedRow, setSelectedRow] = useState(null);
 
   const handleRowClick = (index, ship) => {

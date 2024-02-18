@@ -1,6 +1,3 @@
-// Example: src/SemicircleChart.js
-
-import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const SemicircleChart = () => {
