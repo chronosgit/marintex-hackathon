@@ -1,10 +1,23 @@
+import { useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const LineChart = ({ selectedData = {rank: 1, value: 1} }) => {
+const LineChart = ({ ships, filter }) => {
+  // useEffect(()=> {
+  //   const fetchData = async () => {
+  //     // console.log(localStorage.getItem('access-token'));
+  //     const result = await getAllMonitorings();
+  //     setShips(result);
+  //     // console.log(result[0]);
+  //     setSelectedData(result[0]);
+  //   }
+  //   fetchData();
+  // }, []);
+  let forSeries = ships.map(ship => ship[filter]);
+  let forCategroies = ships.map(ship => ship['createdDate']);
     const series = [
       {
           name: 'Series 1',
-          data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+          data: forSeries,
       },
     ];
 
@@ -14,7 +27,7 @@ const LineChart = ({ selectedData = {rank: 1, value: 1} }) => {
           type: 'line',
       },
       xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+          categories: forCategroies,
       },
       stroke: {
           curve: 'smooth', // Set the curve type to 'smooth'
@@ -23,7 +36,6 @@ const LineChart = ({ selectedData = {rank: 1, value: 1} }) => {
 
   return (
     <div>
-        <p>Statistics: {selectedData.rank}</p>
         <ReactApexChart options={options} series={series} type="line" height={200} />
     </div>
   );
