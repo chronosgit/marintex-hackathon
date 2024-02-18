@@ -50,7 +50,7 @@ function a11yProps(index) {
 
 export default function VerticalTab() {
 	const username = localStorage.getItem("username") || "Username";
-	const [value, setValue] = useState(2);
+	const [value, setValue] = useState(1);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
