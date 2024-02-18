@@ -9,6 +9,7 @@ import { useState } from 'react';
 import CreateMonitoring from '../create-monitoring/CreateMonitoring';
 import CreatePost from '../create-post/CreatePost';
 import Feed from '../feed/Feed';
+import Logout from '../logout/Logout';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -79,7 +80,16 @@ export default function VerticalTab() {
 				<Monitor />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				<CreateMonitoring />
+				<Box
+					sx={{
+						display: "grid",
+						placeItems: "center",
+						gap: "3rem",
+					}}
+				>
+					<Logout />
+					<CreateMonitoring />
+				</Box>
 			</TabPanel>
 			<TabPanel value={value} index={3}>
 				<CreatePost />
@@ -87,7 +97,6 @@ export default function VerticalTab() {
 			<TabPanel value={value} index={4}>
 				<Feed />
 			</TabPanel>
-			
 		</Box>
 	);
 }

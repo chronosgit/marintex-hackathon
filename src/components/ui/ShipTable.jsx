@@ -20,7 +20,7 @@ const ShipTable = ({ ships = objectExample, onRowClick}) => {
   const handleRowClick = (index, ship) => {
     setSelectedRow(index);
     onRowClick(index, ship);
-    console.log(ship);
+    // console.log(ship);
   };
 
   return (
